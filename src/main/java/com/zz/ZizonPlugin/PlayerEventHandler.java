@@ -10,6 +10,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffectType;
 
 public class PlayerEventHandler implements Listener {
     @EventHandler
@@ -26,6 +27,9 @@ public class PlayerEventHandler implements Listener {
                     case FIRE_CHARGE:
                         player.performCommand("zizonplugin:explode");
                         break;
+                    case BAMBOO:
+                        player.performCommand("zizonplugin:chichiya");
+                        break;
                 }
             }
         }
@@ -34,7 +38,7 @@ public class PlayerEventHandler implements Listener {
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent phe) {
         Entity e = phe.getEntity();
-        if(e instanceof Arrow)
+        if(e instanceof Arrow && ((Arrow)e).hasCustomEffect(PotionEffectType.GLOWING))
         {
             e.getWorld().createExplosion(e.getLocation(), 10, true, true);
             e.remove();
