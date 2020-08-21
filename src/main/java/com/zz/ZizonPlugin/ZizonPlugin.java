@@ -8,6 +8,7 @@ public class ZizonPlugin extends JavaPlugin {
         getLogger().info("zl존개쩌는 플러그인이 로드되었습니다!");
         this.getCommand("zizon").setExecutor(new ZizonCommand());
         this.getCommand("lightning").setExecutor(new LightningCommand());
+        this.getCommand("explode").setExecutor(new ExplodeCommand());
     }
 
     @Override

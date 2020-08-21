@@ -11,3 +11,10 @@ commands:
     aliases:
       - 우르르쾅쾅
       - 백만볼트
+  explode:
+    description: 바라보는 방향으로 zl존 개쩌는 김순상의 초고출력을 시전합니다.
+    usage: /explode
+    aliases:
+      - 초고출력
+      - 순상
+      - sunsang
