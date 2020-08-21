@@ -5,3 +5,9 @@ commands:
   zizon:
     description: zl존 개쩌는 커맨드입니다.
     usage: /zizon
+  lightning:
+    description: 바라보는 방향에 우르르쾅쾅을 시전합니다.
+    usage: /lightning
+    aliases:
+      - 우르르쾅쾅
+      - 백만볼트
