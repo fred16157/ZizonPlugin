@@ -19,3 +19,9 @@ commands:
       - 초고출력
       - 순상
       - sunsang
+  chichiya:
+    description: 바라보는 방향으로 zl존 개쩌는 64발의 화살을 발사합니다.
+    usage: /chichiya
+    aliases:
+      - 용의천천시
+      - 천천시

@@ -10,6 +10,7 @@ public class ZizonPlugin extends JavaPlugin {
         this.getCommand("zizon").setExecutor(new ZizonCommand());
         this.getCommand("lightning").setExecutor(new LightningCommand());
         this.getCommand("explode").setExecutor(new ExplodeCommand(this));
+        this.getCommand("chichiya").setExecutor(new ChichiyaCommand());
 
         Listener eventListener = new PlayerEventHandler();
         getServer().getPluginManager().registerEvents(eventListener, this);
