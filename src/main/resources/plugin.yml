@@ -1,6 +1,7 @@
 name: ZizonPlugin
 version: 1.0
 main: com.zz.ZizonPlugin.ZizonPlugin
+api-version: 1.16
 commands:
   zizon:
     description: zl존 개쩌는 커맨드입니다.
