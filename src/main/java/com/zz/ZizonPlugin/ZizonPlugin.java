@@ -6,6 +6,7 @@ public class ZizonPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("zl존개쩌는 플러그인이 로드되었습니다!");
+        this.getCommand("zizon").setExecutor(new ZizonCommand());
     }
 
     @Override
