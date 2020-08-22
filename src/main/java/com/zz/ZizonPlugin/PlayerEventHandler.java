@@ -3,6 +3,7 @@ package com.zz.ZizonPlugin;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,12 +12,19 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import static com.zz.ZizonPlugin.GanpaCommand.playerAttr;
 
 public class PlayerEventHandler implements Listener {
+    final Plugin plugin;
+
+    public PlayerEventHandler(Plugin plugin) {
+        this.plugin = plugin;
+    }
+
     @EventHandler
     public void onPlayerClicks(PlayerInteractEvent pie) {
         Player player = pie.getPlayer();
@@ -45,10 +53,22 @@ public class PlayerEventHandler implements Listener {
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent phe) {
         Entity e = phe.getEntity();
-        if(e instanceof Arrow && ((Arrow)e).hasCustomEffect(PotionEffectType.GLOWING))
+        Entity target = phe.getHitEntity();
+        if(e instanceof Arrow)
         {
-            e.getWorld().createExplosion(e.getLocation(), 10, true, true);
-            e.remove();
+            if(((Arrow)e).hasCustomEffect(PotionEffectType.GLOWING))    //천천시 화살
+            {
+                e.getWorld().createExplosion(e.getLocation(), 10, true, true);
+                e.remove();
+            }
+            else if(((Arrow)e).hasCustomEffect(PotionEffectType.INVISIBILITY) && target instanceof LivingEntity) //투구깨기 판정 화살
+            {
+                Player p = (Player)((Arrow) e).getShooter();
+                LivingEntity le = (LivingEntity)target;
+                e.remove();
+                le.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 100, 250));
+
+            }
         }
     }
 
