@@ -15,6 +15,7 @@ import org.bukkit.util.Vector;
 import java.util.concurrent.TimeUnit;
 
 public class ExplodeCommand implements CommandExecutor {
+    final CooldownManager cooldownManager = new CooldownManager(5);
     final Plugin plugin;
 
     public ExplodeCommand(Plugin plugin) {
@@ -25,6 +26,12 @@ public class ExplodeCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {//플래이어
             Player p = (Player) sender;
+            long timeLeft = System.currentTimeMillis() - cooldownManager.getCooldown(p.getUniqueId());
+            if(TimeUnit.MILLISECONDS.toSeconds(timeLeft) < cooldownManager.cooldownSeconds) {
+                p.sendMessage("zl존 개쩌는 김순상의 초고출력의 쿨타임이 " + Math.abs(TimeUnit.MILLISECONDS.toSeconds(timeLeft) - cooldownManager.cooldownSeconds) + "초 남았습니다.");
+                return true;
+            }
+            cooldownManager.setCooldown(p.getUniqueId(), System.currentTimeMillis());
             Bukkit.broadcastMessage(p.getDisplayName() + "님이 zl존 김순상의 초고출력을 시전하셨습니다!");
             p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20 * 3, 100));
             p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20 * 3, 250));
@@ -58,7 +65,6 @@ class BcScheduler implements Runnable {
     }
     @Override
     public void run() {
-        Bukkit.broadcastMessage(cnt + " " + player_direction);//멀티플이 곱해버린다고
         p.getWorld().createExplosion(p.getLocation().add(save_pdir.multiply(cnt)), 7, true, true);
         if(cnt <= 14)
             Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new BcScheduler(p,cnt+=2,player_direction,plugin), 4);
