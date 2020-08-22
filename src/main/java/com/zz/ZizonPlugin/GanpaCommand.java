@@ -15,7 +15,7 @@ import org.bukkit.util.Vector;
 import java.util.concurrent.TimeUnit;
 
 public class GanpaCommand implements CommandExecutor {
-    final CooldownManager cooldownManager = new CooldownManager(5);
+    final CooldownManager cooldownManager = new CooldownManager(1);
     final Plugin plugin;
 
     public GanpaCommand(Plugin plugin) {
@@ -33,6 +33,18 @@ public class GanpaCommand implements CommandExecutor {
             }
             cooldownManager.setCooldown(p.getUniqueId(), System.currentTimeMillis());
             Bukkit.broadcastMessage(p.getDisplayName() + "님이 zl존 공간파베기를 시전하셨습니다!");
+            p.setVelocity(p.getLocation().getDirection().multiply(-5).setY(0));
+
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20 * 1, 250));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20 * 1, 250));
+
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                public void run() {
+                    p.setVelocity(p.getLocation().getDirection().multiply(5).setY(0));
+                }
+            }, 20L * 1);
+
+
         } else if (sender instanceof ConsoleCommandSender) {//콘솔
             ConsoleCommandSender c = (ConsoleCommandSender) sender;
             c.sendMessage("콘솔에서는 공간파베기를 사용할 수 없습니다.");

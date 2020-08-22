@@ -33,8 +33,8 @@ public class ExplodeCommand implements CommandExecutor {
             }
             cooldownManager.setCooldown(p.getUniqueId(), System.currentTimeMillis());
             Bukkit.broadcastMessage(p.getDisplayName() + "님이 zl존 김순상의 초고출력을 시전하셨습니다!");
-            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20 * 3, 100));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20 * 3, 250));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20 * 2, 250));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20 * 2, 250));
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 public void run() {
                     Vector player_direction = p.getLocation().getDirection();

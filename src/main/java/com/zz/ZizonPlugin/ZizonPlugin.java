@@ -12,7 +12,7 @@ public class ZizonPlugin extends JavaPlugin {
         this.getCommand("explode").setExecutor(new ExplodeCommand(this));
         this.getCommand("chichiya").setExecutor(new ChichiyaCommand());
         this.getCommand("helmetbreak").setExecutor(new HelmetBreakCommand());
-
+        this.getCommand("ganpa").setExecutor(new GanpaCommand(this));
         Listener eventListener = new PlayerEventHandler();
         getServer().getPluginManager().registerEvents(eventListener, this);
     }

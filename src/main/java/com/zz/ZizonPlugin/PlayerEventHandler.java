@@ -30,6 +30,9 @@ public class PlayerEventHandler implements Listener {
                     case BAMBOO:
                         player.performCommand("zizonplugin:chichiya");
                         break;
+                    case WOODEN_SWORD:
+                        player.performCommand("zizonplugin:ganpa");
+                        break;
                 }
             }
         }

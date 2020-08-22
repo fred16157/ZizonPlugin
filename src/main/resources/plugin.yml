@@ -30,3 +30,8 @@ commands:
     usage: /helmetbreak
     aliases:
       - 투구깨기
+  ganpa:
+    description: 뒤로 5칸 이동을 하며 상대의 공격을 회피합니다. 회피의 성공할시 매우 강해집니다..
+    usage: /ganpa
+    aliases:
+      - 간파
