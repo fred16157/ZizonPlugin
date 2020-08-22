@@ -52,6 +52,9 @@ public class PlayerEventHandler implements Listener {
                     case GOLDEN_SWORD:
                         player.performCommand("zizonplugin:helmetbreak");
                         break;
+                    case DIAMOND_SWORD:
+                        player.performCommand("zizonplugin:chammoa");
+                        break;
                 }
             }
         }

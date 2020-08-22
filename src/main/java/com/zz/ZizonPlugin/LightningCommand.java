@@ -1,18 +1,18 @@
 package com.zz.ZizonPlugin;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.Server;
-import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.util.BoundingBox;
+        import org.bukkit.Material;
+        import org.bukkit.Server;
+        import org.bukkit.World;
+        import org.bukkit.block.Block;
+        import org.bukkit.command.Command;
+        import org.bukkit.command.CommandExecutor;
+        import org.bukkit.command.CommandSender;
+        import org.bukkit.command.ConsoleCommandSender;
+        import org.bukkit.entity.Entity;
+        import org.bukkit.entity.Player;
+        import org.bukkit.inventory.ItemStack;
+        import org.bukkit.util.BoundingBox;
 
 public class LightningCommand implements CommandExecutor {
     @Override

@@ -45,7 +45,11 @@ public class GanpaCommand implements CommandExecutor {
             p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 15, 250));
             playerAttr.add(p.getUniqueId());
 
-            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {public void run() {playerAttr.remove(p.getUniqueId());}}, 15L);
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                public void run() {
+                    playerAttr.remove(p.getUniqueId());
+                }
+            }, 15L);
 
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 public void run() {

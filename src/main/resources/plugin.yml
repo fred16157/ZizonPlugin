@@ -35,3 +35,10 @@ commands:
     usage: /ganpa
     aliases:
       - 간파
+
+  chammoa:
+    description: 정면 방향으로 zl존 개쩌는 3번 강력한 공격을 내려 찍습니다
+    usage: /chammoa
+    aliases:
+      - 참모아베기
+      - 참모아
