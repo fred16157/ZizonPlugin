@@ -25,3 +25,8 @@ commands:
     aliases:
       - 용의천천시
       - 천천시
+  helmetbreak:
+    description: 바라보는 방향으로 10칸 이동 후, 이동 범위 내 있던 대상에 구속 효과 적용, 일정 시간 뒤에 폭발을 일으킵니다.
+    usage: /helmetbreak
+    aliases:
+      - 투구깨기
