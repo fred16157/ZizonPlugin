@@ -13,11 +13,7 @@ public class CooldownManager {
     private final Map<UUID, Long> cooldowns = new HashMap<>();
 
     public void setCooldown(UUID player, long time){
-        if(time < 1) {
-            cooldowns.remove(player);
-        } else {
-            cooldowns.put(player, time);
-        }
+        cooldowns.put(player, time);
     }
 
     public Long getCooldown(UUID player){

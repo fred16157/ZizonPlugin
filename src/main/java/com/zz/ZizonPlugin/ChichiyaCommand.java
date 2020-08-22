@@ -37,11 +37,13 @@ public class ChichiyaCommand implements CommandExecutor {
                 return true;
             }
             p.sendMessage(p.getDisplayName() + "가 zl존 개쩌는 곽일천천시를 시전하셨습니다");
-            for(int i = -30; i < 30; i += 2) {
-                cooldownManager.setCooldown(p.getUniqueId(), System.currentTimeMillis());
+            p.setVelocity(p.getVelocity().setY(10.0));
+            cooldownManager.setCooldown(p.getUniqueId(), System.currentTimeMillis());
+            for(int i = -30; i < 30; i += 4) {
                 Arrow pr = p.launchProjectile(Arrow.class, getDir(p.getLocation().getYaw(), p.getLocation().getDirection().getY(), i));
                 pr.addCustomEffect(new PotionEffect(PotionEffectType.GLOWING, 60, 1), true);
             }
+            p.setVelocity(p.getVelocity().multiply(-1).setY(0));
         }
         else if(sender instanceof ConsoleCommandSender) {//콘솔
             ConsoleCommandSender c = (ConsoleCommandSender)sender;
