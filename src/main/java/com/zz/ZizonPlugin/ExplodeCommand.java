@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,13 +26,15 @@ public class ExplodeCommand implements CommandExecutor {
         if (sender instanceof Player) {//플래이어
             Player p = (Player) sender;
             Bukkit.broadcastMessage(p.getDisplayName() + "님이 zl존 김순상의 초고출력을 시전하셨습니다!");
-            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20 * 5, 100));
-            p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20 * 5, 250));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20 * 3, 100));
+            p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20 * 3, 250));
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 public void run() {
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new BcScheduler(p,8, plugin), 10);
+                    Vector player_direction = p.getLocation().getDirection();
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20 * 1, 250));
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new BcScheduler(p,8, player_direction, plugin),0);
                 }
-            }, 20L * 3);//20L = 1 sec
+            }, 20L * 2);//20L = 1 sec
         } else if (sender instanceof ConsoleCommandSender) {//콘솔
             ConsoleCommandSender c = (ConsoleCommandSender) sender;
             c.sendMessage("콘솔에서는 김순상의 초고출력을 사용할 수 없습니다.");
@@ -44,17 +47,20 @@ class BcScheduler implements Runnable {
     Player p;
     int cnt;
     Plugin plugin;
-    BcScheduler(Player p, int i, Plugin plugin){
+    Vector player_direction;
+    Vector save_pdir;
+    BcScheduler(Player p, int cnt,Vector player_direction, Plugin plugin){
          this.p = p;
-         cnt = i;
+         this.cnt = cnt;
          this.plugin = plugin;
+         this.player_direction = player_direction;
+         save_pdir = player_direction.clone();
     }
     @Override
     public void run() {
-        p.getWorld().createExplosion(p.getLocation().add(p.getLocation().getDirection().multiply(cnt)), 10, true, true);
-        if(cnt <= 19)
-            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new BcScheduler(p,cnt+=2,plugin), 4);
+        Bukkit.broadcastMessage(cnt + " " + player_direction);//멀티플이 곱해버린다고
+        p.getWorld().createExplosion(p.getLocation().add(save_pdir.multiply(cnt)), 7, true, true);
+        if(cnt <= 14)
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new BcScheduler(p,cnt+=2,player_direction,plugin), 4);
     }
 }
-
-
