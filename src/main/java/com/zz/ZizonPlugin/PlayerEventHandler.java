@@ -1,5 +1,6 @@
 package com.zz.ZizonPlugin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -57,8 +58,9 @@ public class PlayerEventHandler implements Listener {
         if (e.getEntity() instanceof  Player) {
             Player p = (Player) e.getEntity();
             if(playerAttr.indexOf(p.getUniqueId()) != -1){
-                p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20, 250));
-                p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 3, 3));
+                Bukkit.broadcastMessage("★간★파★성★공★");
+                p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30, 250));
+                p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 4, 2));
             }
         }
     }
