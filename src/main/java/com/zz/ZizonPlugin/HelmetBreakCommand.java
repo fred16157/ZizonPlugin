@@ -14,12 +14,11 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class HelmetBreakCommand implements CommandExecutor {
+    static Map<UUID, LivingEntity> targets = new HashMap<>();
     final CooldownManager cooldownManager = new CooldownManager(1);
 
     final Plugin plugin;
@@ -44,10 +43,10 @@ public class HelmetBreakCommand implements CommandExecutor {
             }
             p.sendMessage(p.getDisplayName() + "가 zl존 개쩌는 투구깨기를 시전하셨습니다");
             cooldownManager.setCooldown(p.getUniqueId(), System.currentTimeMillis());
-            Arrow a = p.launchProjectile(Arrow.class, p.getEyeLocation().getDirection());
+            Arrow a = p.launchProjectile(Arrow.class, p.getEyeLocation().getDirection().multiply(3));
             a.setGravity(false);
             a.setDamage(0);
-            a.addCustomEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 3600, 1), true);
+            a.addCustomEffect(new PotionEffect(PotionEffectType.SLOW, 3600, 1), true);
         }
         else if(sender instanceof ConsoleCommandSender) {
             ConsoleCommandSender c = (ConsoleCommandSender)sender;
@@ -57,3 +56,21 @@ public class HelmetBreakCommand implements CommandExecutor {
     }
 }
 
+class HelmetBreakScheduler implements Runnable {
+    LivingEntity target;
+    int cnt;
+    Plugin plugin;
+    HelmetBreakScheduler(LivingEntity target, int cnt, Plugin plugin){
+        this.target = target;
+        this.cnt = cnt;
+        this.plugin = plugin;
+    }
+    @Override
+    public void run() {
+        if(target.isDead()) return;
+        if(cnt <= 10)
+            target.damage(5);
+            target.getWorld().createExplosion(target.getEyeLocation(), 0, false, false);
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new HelmetBreakScheduler(target,cnt++,plugin), 1);
+    }
+}
