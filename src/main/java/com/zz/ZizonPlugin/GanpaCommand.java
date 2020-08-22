@@ -12,10 +12,13 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class GanpaCommand implements CommandExecutor {
-    final CooldownManager cooldownManager = new CooldownManager(1);
+    static ArrayList<UUID> playerAttr = new ArrayList<>();
+    final CooldownManager cooldownManager = new CooldownManager(3);
     final Plugin plugin;
 
     public GanpaCommand(Plugin plugin) {
@@ -31,12 +34,18 @@ public class GanpaCommand implements CommandExecutor {
                 p.sendMessage("zl존 개쩌는 공간파베기의 쿨타임이 " + Math.abs(TimeUnit.MILLISECONDS.toSeconds(timeLeft) - cooldownManager.cooldownSeconds) + "초 남았습니다.");
                 return true;
             }
+
             cooldownManager.setCooldown(p.getUniqueId(), System.currentTimeMillis());
             Bukkit.broadcastMessage(p.getDisplayName() + "님이 zl존 공간파베기를 시전하셨습니다!");
             p.setVelocity(p.getLocation().getDirection().multiply(-5).setY(0));
 
             p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20 * 1, 250));
             p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20 * 1, 250));
+
+            p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 15, 250));
+            playerAttr.add(p.getUniqueId());
+
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {public void run() {playerAttr.remove(p.getUniqueId());}}, 15L);
 
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 public void run() {

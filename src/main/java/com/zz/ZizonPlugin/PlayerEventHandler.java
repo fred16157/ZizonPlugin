@@ -7,10 +7,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import static com.zz.ZizonPlugin.GanpaCommand.playerAttr;
 
 public class PlayerEventHandler implements Listener {
     @EventHandler
@@ -45,6 +49,17 @@ public class PlayerEventHandler implements Listener {
         {
             e.getWorld().createExplosion(e.getLocation(), 10, true, true);
             e.remove();
+        }
+    }
+
+    @EventHandler
+    public void onPlayerDamage(EntityDamageEvent e) {
+        if (e.getEntity() instanceof  Player) {
+            Player p = (Player) e.getEntity();
+            if(playerAttr.indexOf(p.getUniqueId()) != -1){
+                p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20, 250));
+                p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 3, 3));
+            }
         }
     }
 }

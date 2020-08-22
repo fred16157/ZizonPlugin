@@ -57,11 +57,11 @@ class BcScheduler implements Runnable {
     Vector player_direction;
     Vector save_pdir;
     BcScheduler(Player p, int cnt,Vector player_direction, Plugin plugin){
-         this.p = p;
-         this.cnt = cnt;
-         this.plugin = plugin;
-         this.player_direction = player_direction;
-         save_pdir = player_direction.clone();
+        this.p = p;
+        this.cnt = cnt;
+        this.plugin = plugin;
+        this.player_direction = player_direction;
+        save_pdir = player_direction.clone();
     }
     @Override
     public void run() {
