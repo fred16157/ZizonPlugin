@@ -17,6 +17,7 @@ public class ZizonPlugin extends JavaPlugin {
         this.getCommand("helmetbreak").setExecutor(new HelmetBreakCommand(this));
         this.getCommand("ganpa").setExecutor(new GanpaCommand(this));
         this.getCommand("chammoa").setExecutor(new ChammoaCommand(this));
+        this.getCommand("openinventory").setExecutor(new OpenInventoryCommand());
         Listener eventListener = new PlayerEventHandler(this);
         Listener toolInventory = new ToolInventory();
         getServer().getPluginManager().registerEvents(toolInventory, this);
