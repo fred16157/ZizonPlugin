@@ -26,7 +26,7 @@ commands:
       - 용의천천시
       - 천천시
   helmetbreak:
-    description: 바라보는 방향으로 10칸 이동 후, 이동 범위 내 있던 대상에 구속 효과 적용, 일정 시간 뒤에 폭발을 일으킵니다.
+    description: 바라보는 방향으로 화살 발사 후, 이동 범위 내 있던 대상에 구속 효과 적용, 일정 시간 뒤에 폭발을 일으킵니다.
     usage: /helmetbreak
     aliases:
       - 투구깨기
@@ -35,6 +35,8 @@ commands:
     usage: /ganpa
     aliases:
       - 간파
+  openinventory:
+    description: 인벤토리를 엽니다.
 
   chammoa:
     description: 정면 방향으로 zl존 개쩌는 3번 강력한 공격을 내려 찍습니다

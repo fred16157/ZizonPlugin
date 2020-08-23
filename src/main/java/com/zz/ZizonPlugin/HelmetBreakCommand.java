@@ -71,6 +71,6 @@ class HelmetBreakScheduler implements Runnable {
         if(cnt <= 10)
             target.damage(5);
             target.getWorld().createExplosion(target.getEyeLocation(), 0, false, false);
-            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new HelmetBreakScheduler(target,cnt++,plugin), 1);
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new HelmetBreakScheduler(target,++cnt,plugin), 1);
     }
 }
