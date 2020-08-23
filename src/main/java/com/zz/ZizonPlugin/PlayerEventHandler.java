@@ -14,6 +14,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
@@ -110,10 +111,22 @@ public class PlayerEventHandler implements Listener {
     public void onPlayerDamage(EntityDamageEvent e) {
         if (e.getEntity() instanceof  Player) {
             Player p = (Player) e.getEntity();
-            if(playerAttr.indexOf(p.getUniqueId()) != -1){
+            if(GanpaCommand.playerAttr.indexOf(p.getUniqueId()) != -1){
                 Bukkit.broadcastMessage("★간★파★성★공★");
                 p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 30, 250));
                 p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 4, 2));
+            }
+        }
+    }
+
+
+    @EventHandler
+    public void onPlayerToggleSneakEvent(PlayerToggleSneakEvent event) {
+        Player p = event.getPlayer();
+        if(p.isSneaking()) {
+            if(RaidstabbingCommand.flying_player.indexOf(p.getUniqueId()) != -1){
+                p.setVelocity(p.getVelocity().setY(-1.5));
+                RaidstabbingCommand.playerAttr.add(p.getUniqueId());
             }
         }
     }

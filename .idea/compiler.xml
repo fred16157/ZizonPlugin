@@ -2,6 +2,9 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <option name="USE_RELEASE_OPTION" value="false" />
-    <bytecodeTargetLevel target="14" />
+    <bytecodeTargetLevel target="14">
+      <module name="ZizonPlugin_main" target="11" />
+      <module name="ZizonPlugin_test" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

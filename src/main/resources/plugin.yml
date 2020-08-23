@@ -44,3 +44,11 @@ commands:
     aliases:
       - 참모아베기
       - 참모아
+  raidstab:
+    description: 빠르게 바닥으로 찌르기
+    usage: /raidstab
+    aliases:
+      - 급습찌르기
+      - 급습
+
+

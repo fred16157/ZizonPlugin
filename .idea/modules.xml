@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ZizonPlugin.iml" filepath="$PROJECT_DIR$/.idea/modules/ZizonPlugin.iml" group="ZizonPlugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ZizonPlugin_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ZizonPlugin_main.iml" group="ZizonPlugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ZizonPlugin_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ZizonPlugin_test.iml" group="ZizonPlugin" />
+    </modules>
+  </component>
+</project>
