@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ZizonPlugin.iml" filepath="$PROJECT_DIR$/.idea/modules/ZizonPlugin.iml" group="ZizonPlugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ZizonPlugin.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ZizonPlugin.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ZizonPlugin.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ZizonPlugin.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ZizonPlugin_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ZizonPlugin_main.iml" group="ZizonPlugin" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ZizonPlugin_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ZizonPlugin_test.iml" group="ZizonPlugin" />
     </modules>

@@ -28,6 +28,7 @@ public class ToolInventory implements Listener {
         inv.addItem(createGuiItem(Material.BAMBOO, "곽일천천시", "성능충쉑"));
         inv.addItem(createGuiItem(Material.WOODEN_SWORD, "공간파베기", "아니 간파했다고"));
         inv.addItem(createGuiItem(Material.GOLDEN_SWORD, "투구깨기", "존재 자체가 버그임"));
+        inv.addItem(createGuiItem(Material.DIAMOND_SWORD, "투구깨기", "아니 여기서 꼬리를 왜움직이는데"));
     }
 
     protected ItemStack createGuiItem(final Material material, final String name, final String... lore) {

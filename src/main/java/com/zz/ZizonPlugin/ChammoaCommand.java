@@ -2,15 +2,18 @@ package com.zz.ZizonPlugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.BoundingBox;
 
 
 import java.util.ArrayList;
@@ -50,28 +53,56 @@ public class ChammoaCommand implements CommandExecutor {
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 public void run() {
                     p.setVelocity(p.getLocation().getDirection().multiply(1).setY(0));
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 15, 2));
+                    Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                        public void run() {
+                            attackPos.getWorld().spawnParticle(Particle.EXPLOSION_HUGE, p.getLocation(), 1);
+                            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                                @Override
+                                public void run() {
+                                    BoundingBox bb = BoundingBox.of(p.getEyeLocation(), 7, 5, 4);
+                                    ArrayList<Entity> entities = (ArrayList) p.getWorld().getNearbyEntities(bb);
+                                    for(Entity entity : entities){
+                                        if(entity.equals(p)) return;
+                                        else if(entity instanceof LivingEntity){
+                                            LivingEntity le = (LivingEntity) entity;
+                                            le.damage(5);
+                                        }
+                                    }
+                                }
+                            }, 10);
+                            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                                public void run() {
+                                    p.setVelocity(p.getLocation().getDirection().multiply(1).setY(0.5));
+                                    Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                                        public void run() {
+                                            attackPos.getWorld().spawnParticle(Particle.EXPLOSION_HUGE, p.getLocation(), 1);
+                                            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    BoundingBox bb = BoundingBox.of(p.getEyeLocation(), 7, 5, 4);
+                                                    ArrayList<Entity> entities = (ArrayList) p.getWorld().getNearbyEntities(bb);
+                                                    for(Entity entity : entities){
+                                                        if(entity.equals(p)) return;
+                                                        else if(entity instanceof LivingEntity){
+                                                            LivingEntity le = (LivingEntity) entity;
+                                                            le.damage(30);
+                                                        }
+                                                    }
+                                                }
+                                            }, 10);
+                                        }
+                                    }, 10);
+                                }
+                            }, 20);
+                        }
+                    }, 10);
                 }
             }, 20);
 
-            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-                public void run() {
-                    attackPos.getWorld().createExplosion(attackPos, 0, false, false);
-                }
-            }, 28);
 
-            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-                public void run() {
-                    p.setVelocity(p.getLocation().getDirection().multiply(1).setY(0.5));
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 15, 4));
-                }
-            }, 40);
 
-            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-                public void run() {
-                    attackPos.getWorld().createExplosion(attackPos, 0, false, false);
-                }
-            }, 55);
+
+
 
         }
         else if(sender instanceof ConsoleCommandSender) { //콘솔
