@@ -17,4 +17,5 @@
     <orderEntry type="library" name="Gradle: org.yaml:snakeyaml:1.26" level="project" />
     <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
   </component>
+  <component name="TestModuleProperties" production-module="ZizonPlugin.main" />
 </module>

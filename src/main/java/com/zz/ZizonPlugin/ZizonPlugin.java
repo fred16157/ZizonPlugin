@@ -3,8 +3,6 @@ package com.zz.ZizonPlugin;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Dictionary;
-
 public class ZizonPlugin extends JavaPlugin {
 
     @Override
